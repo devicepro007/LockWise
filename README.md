@@ -74,21 +74,6 @@ The project uses:
 
 ---
 
-##  Screenshots
-
-> Add screenshots here for better presentation
-
-### Homepage
-![Homepage](images/homepage.jpg)
-
-### Products Page
-![Products](images/products.jpg)
-
-### Contact Page
-![Contact](images/contact.jpg)
-
----
-
 ##  Quick Start
 
 ### 1. Install an HTTP server (e.g. Apache/Nginx)
