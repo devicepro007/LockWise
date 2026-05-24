@@ -86,8 +86,8 @@ $header_navbar_chosen = "Home";
                 </p>
             </div>
             <div id="buy-on-amazon" class="section-button-div">
-                <a target="_blank" rel="noopener noreferrer" href="<?= $amazon_page_url ?>" id="buy-on-amazon-button"
-                    class="section-button button">Buy on Amazon</a>
+                <a target="_blank" rel="noopener noreferrer" id="buy-on-amazon-button" class="section-button button">Buy
+                    on Amazon (Soon)</a>
             </div>
         </section>
     </main>

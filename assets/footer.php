@@ -60,9 +60,9 @@
                     GNU AGPLv3
                 </a>.
                 <br>
-                Source code available at
-                <a href="/source.php" target="_blank" rel="noopener noreferrer">
-                    /source.php
+                Source code available on
+                <a href="https://github.com/devicepro007/LockWise" target="_blank" rel="noopener noreferrer">
+                    GitHub
                 </a>.
             </p>
         </div>
