@@ -1,0 +1,987 @@
+/*
+ * Licensed under the GNU AGPLv3
+ * Copyright (C) 2026 DPro7
+ */
+
+:root {
+    /* General colors */
+    --red: hsla(0, 100%, 50%, 1);
+    --orange: hsla(30, 100%, 50%, 1);
+    --yellow: hsla(60, 100%, 50%, 1);
+    --green: hsla(120, 100%, 50%, 1);
+    --light-blue: hsla(180, 100%, 50%, 1);
+    --blue: hsla(240, 100%, 50%, 1);
+    --purple: hsla(270, 100%, 50%, 1);
+    --pink: hsla(300, 100%, 50%, 1);
+
+    /* Website colors - Darker theme restored */
+    --main-color: hsla(0, 0%, 2.7%, 1);
+    /* Almost black */
+    --main-hover-color: hsla(0, 0%, 35%, 1);
+    --white: hsla(0, 0%, 97.3%, 1);
+    --light-gray: hsla(0, 0%, 87.3%, 1);
+    --gray: hsla(0, 0%, 21%, 1);
+    /* Dark background restored */
+    --black: hsla(0, 0%, 2.7%, 1);
+    --p: hsla(0, 0%, 20%, 1);
+
+    /* Modern Layered Shadows */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 15px rgba(255, 255, 255, 0.1);
+
+    --input-border-gray: hsla(0, 0%, 76.5%, 1);
+    --input-placeholder-gray: hsla(0, 0%, 40%, 1);
+
+    /* Website sizes */
+    --card-width-no-padding: 24rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+.card,
+.button,
+a,
+img,
+h1,
+h2,
+h3,
+h4 {
+    will-change: transform;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--black);
+    color: var(--black);
+    /* Default text color (applies mostly inside cards) */
+    line-height: 1.6;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Animations */
+@keyframes buttonFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes buttonGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            var(--shadow-sm),
+            0 0 0 rgba(255, 255, 255, 0);
+    }
+
+    50% {
+        box-shadow:
+            var(--shadow-md),
+            0 0 18px rgba(255, 255, 255, 0.12);
+    }
+}
+
+@keyframes sheenMove {
+    from {
+        transform: translateX(-130%) skewX(-25deg);
+    }
+
+    to {
+        transform: translateX(230%) skewX(-25deg);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography & Links */
+p,
+a {
+    font-size: 1rem;
+    margin: 0;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+a {
+    text-decoration: underline var(--main-color);
+    text-underline-offset: 4px;
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    text-decoration-color: var(--white);
+    opacity: 0.8;
+}
+
+/* Headings on the main dark background should be white */
+h1,
+.section>h2,
+.page-section>h1 {
+    color: var(--white);
+    margin: 0;
+    width: fit-content;
+    transition: transform 0.3s ease;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    line-height: 1.2;
+}
+
+h3,
+h4 {
+    margin: 0;
+    width: fit-content;
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.page-section.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* This centers the H1 and the content below it */
+    text-align: center;
+    padding: 8vh 3vw;
+    margin: 0 auto;
+}
+
+.page-section h1 {
+    color: var(--white);
+    margin: 0 0 3rem 0;
+    /* Added bottom margin for breathing room */
+    font-size: 3rem;
+    width: 100%;
+    /* Allows text-align to work across the container */
+    text-align: center;
+    line-height: 1.2;
+}
+
+#our-products-section {
+    max-width: 140rem;
+    margin-bottom: 0;
+    padding-bottom: 2rem;
+}
+
+/* =========================
+   BUTTONS — ALIVE & FLOWY
+========================= */
+
+@keyframes buttonFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes buttonGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            var(--shadow-sm),
+            0 0 0 rgba(255, 255, 255, 0);
+    }
+
+    50% {
+        box-shadow:
+            var(--shadow-md),
+            0 0 18px rgba(255, 255, 255, 0.12);
+    }
+}
+
+@keyframes sheenMove {
+    from {
+        transform: translateX(-130%) skewX(-25deg);
+    }
+
+    to {
+        transform: translateX(230%) skewX(-25deg);
+    }
+}
+
+.button {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(135deg,
+            hsl(0, 0%, 8%) 0%,
+            hsl(0, 0%, 14%) 50%,
+            hsl(0, 0%, 10%) 100%);
+
+    color: var(--white);
+    padding: 0.95rem 1.7rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    cursor: pointer;
+
+    box-shadow: var(--shadow-sm);
+
+    margin: 0;
+
+    transform-origin: center;
+
+    transition:
+        transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.4),
+        box-shadow 0.45s ease,
+        background 0.45s ease,
+        border-color 0.35s ease,
+        filter 0.35s ease;
+
+    animation:
+        buttonFloat 3.5s ease-in-out infinite,
+        buttonGlow 4s ease-in-out infinite;
+}
+
+/* Liquid shine layer */
+.button::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(120deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.08) 40%,
+            rgba(255, 255, 255, 0.28) 50%,
+            rgba(255, 255, 255, 0.08) 60%,
+            transparent 80%);
+
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
+}
+
+/* Moving sheen streak */
+.button::after {
+    content: "";
+
+    position: absolute;
+    top: -50%;
+    left: -20%;
+
+    width: 40%;
+    height: 200%;
+
+    background: rgba(255, 255, 255, 0.22);
+
+    filter: blur(10px);
+
+    transform: translateX(-130%) skewX(-25deg);
+}
+
+/* Hover */
+.button:hover {
+    background:
+        linear-gradient(135deg,
+            hsl(0, 0%, 12%) 0%,
+            hsl(0, 0%, 20%) 50%,
+            hsl(0, 0%, 14%) 100%);
+
+    border-color: rgba(255, 255, 255, 0.18);
+
+    transform:
+        translateY(-6px) scale(1.04) rotate(-0.4deg);
+
+    box-shadow:
+        var(--shadow-lg),
+        0 0 24px rgba(255, 255, 255, 0.12),
+        0 12px 30px rgba(0, 0, 0, 0.45);
+
+    filter: brightness(1.05);
+}
+
+.button:hover::before {
+    opacity: 1;
+}
+
+.button:hover::after {
+    animation: sheenMove 1s ease forwards;
+}
+
+/* Press / click */
+.button:active {
+    transform:
+        translateY(2px) scale(0.97);
+
+    transition-duration: 0.12s;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.45),
+        inset 0 2px 6px rgba(255, 255, 255, 0.08);
+}
+
+/* Keyboard focus */
+.button:focus-visible {
+    outline: none;
+
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.12),
+        0 0 0 8px rgba(255, 255, 255, 0.05),
+        var(--shadow-lg);
+}
+
+/* Slight stagger so groups feel organic */
+.section-button-div .button:nth-child(2n) {
+    animation-delay: 0.4s;
+}
+
+.section-button-div .button:nth-child(3n) {
+    animation-delay: 0.8s;
+}
+
+/* Header */
+header {
+    background-color: var(--main-color);
+    height: 13rem;
+    width: 100%;
+    padding: 0 5vw;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 100;
+    padding-top: env(safe-area-inset-top);
+}
+
+header div {
+    display: flex;
+    width: 50%;
+    align-items: center;
+}
+
+#header-company {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#header-navbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2vw;
+}
+
+header p,
+header a {
+    font-size: 1.15rem;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+}
+
+header a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--white);
+    transition: width 0.3s ease;
+}
+
+header a:hover::after {
+    width: 100%;
+}
+
+#header-company-logo {
+    height: 11rem;
+    transition: transform 0.4s ease;
+}
+
+#header-company-logo:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.header-navbar-chosen {
+    font-weight: bold;
+    padding: 0.4rem 1rem;
+    background-color: var(--white);
+    color: var(--main-color);
+    border-radius: 100vw;
+    box-shadow: var(--shadow-sm);
+}
+
+.header-navbar-chosen:hover {
+    background-color: var(--light-gray);
+    color: var(--main-color);
+}
+
+.header-navbar-chosen::after {
+    display: none;
+}
+
+#header-navbar-hamburger-menu-icon {
+    font-size: 2.5rem;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    color: var(--white);
+}
+
+#header-navbar-hamburger-menu-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Hamburger Menu Page */
+#header-hamburger-div {
+    padding: 15vh 10vw;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    background-color: var(--main-color);
+}
+
+.header-hamburger-page {
+    font-size: 2rem;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--main-color);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(/images/hero-background-image.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    padding: 8rem 2rem;
+    color: var(--white);
+    box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero h1 {
+    margin: 0 auto 1rem;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin: 0 auto 2rem;
+    color: var(--white);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    animation: fadeUp 1s ease-out forwards;
+}
+
+.hero .button {
+    font-size: 1.1rem;
+    padding: 1.1rem 2rem;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+/* Sections */
+main {
+    min-height: 65vh;
+    background-color: var(--gray);
+}
+
+.section {
+    padding: 8vh 3vw;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 0 auto 2.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-button-div {
+    text-align: center;
+    margin-top: 2.5rem;
+    width: 100%;
+}
+
+.section-button {
+    width: 100%;
+    max-width: var(--card-width-no-padding);
+}
+
+/* Cards & Homepage 4-Column Grid */
+.homepage-section .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* FORCES 4 CARDS IN ONE LINE */
+    gap: 1.5rem;
+    width: 100%;
+    place-items: stretch;
+}
+
+.card {
+    background-color: var(--white);
+    color: var(--black);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+.homepage-section .grid .card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.homepage-section .grid .card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.homepage-section .grid .card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.homepage-section .grid .card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card:hover .button {
+    transform:
+        translateY(-3px) scale(1.02);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 0.5rem;
+    object-fit: contain;
+    background-color: var(--white);
+    margin-bottom: 1rem;
+    transition: transform 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.02);
+}
+
+.card h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.35rem;
+    color: var(--main-color);
+}
+
+.card p {
+    color: var(--p);
+    flex-grow: 1;
+}
+
+/* About & Standalone Cards */
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#about-card,
+.start-end-section-card {
+    text-align: center;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#about-card p {
+    font-size: 1.1rem;
+}
+
+/* Products Page Layout (Fixed) */
+#products-layout-wrapper {
+    display: grid;
+    /* This creates the 4-column default that responds to zoom/screen size */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto 5rem;
+    padding: 2rem 3vw;
+    /* Remove overflow-x: auto; as we want vertical wrapping now */
+}
+
+/* Remove fixed widths from the product cards so they can fill the grid cells */
+.product-white-wrapper {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* Changed from 26rem to 100% */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure the grid logic applies to the homepage section too if needed */
+.homepage-section .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.product-white-wrapper>h2 {
+    color: var(--main-color);
+    /* margin-bottom: 1.5rem; */
+    margin-bottom: 0;
+    margin-top: 0;
+    text-shadow: none;
+}
+
+.product-white-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-main-image {
+    width: 100%;
+    max-height: 20rem;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    /* margin-bottom: 1.25rem; */
+    /* margin-top: 0.75rem; */
+    /* background-color: var(--light-gray); */
+    padding: 0 0 1rem;
+}
+
+/* Overriding the .grid class specifically for product details so they stack */
+div[id^="product-details-container-"] {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+div[id^="product-card-"] {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0;
+    margin: 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--light-gray);
+    width: 100%;
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+div[id^="product-card-"]:last-of-type {
+    border-bottom: none;
+}
+
+div[id^="product-card-"] h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Product Feature Icons */
+.product-feature-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.6rem;
+    align-items: center;
+}
+
+div[id^="product-card-"] .feature-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 0;
+    padding: 0;
+    background-color: transparent;
+    object-fit: contain;
+    border-radius: 0;
+    transition: transform 0.3s ease;
+}
+
+div[id^="product-card-"] .feature-icon:hover {
+    transform: scale(1.15);
+}
+
+/* Contact Form */
+#contact-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 2.5rem;
+    text-align: left;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--main-color);
+}
+
+.name-input,
+.email-input,
+.phone-input,
+.address-input,
+textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--input-border-gray);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--white);
+    margin-bottom: 1.5rem;
+    font-family: inherit;
+}
+
+.name-input:focus,
+.email-input:focus,
+.phone-input:focus,
+.address-input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    height: 10rem;
+    resize: vertical;
+}
+
+/* Footer */
+footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 4rem 0 2rem;
+    width: 100%;
+}
+
+#footer-top-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3vw;
+}
+
+.footer-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-div h4 {
+    margin-bottom: 1.5rem;
+    color: var(--white);
+}
+
+.footer-div a {
+    color: var(--light-gray);
+    text-decoration: none;
+    margin-bottom: 0.8rem;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-div a:hover {
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+#footer-google-maps {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+    margin-top: 1rem;
+    transition: transform 0.3s ease;
+}
+
+#footer-google-maps:hover {
+    transform: scale(1.02);
+}
+
+#footer-bottom-section {
+    max-width: 1400px;
+    margin: 3rem auto 0;
+    padding: 2rem 3vw 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom-div p {
+    color: var(--input-border-gray);
+    font-size: 0.9rem;
+}
+
+.homepage-card-text p {
+    text-align: left;
+}
+
+/* Responsive Rules */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 1rem 1.5rem;
+        height: auto;
+    }
+
+    #header-navbar>a.header-navbar-page {
+        display: none;
+    }
+
+    #header-navbar-hamburger-menu-icon {
+        display: block;
+    }
+
+    .hero {
+        padding: 6rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    /* 1 Card per row on Phones */
+    .homepage-section .grid {
+        grid-template-columns: 1fr;
+    }
+
+    #products-layout-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-white-wrapper {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    #header-navbar-hamburger-menu-icon {
+        display: none;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    .hero {
+        background-attachment: scroll;
+    }
+}
+
+@media screen and (display-mode: standalone) {
+    header {
+        position: fixed;
+        top: 0;
+        padding-top: 4rem;
+        height: fit-content;
+    }
+
+    #header-company-logo {
+        height: 9rem;
+    }
+
+    main {
+        margin-top: 15rem;
+    }
+}

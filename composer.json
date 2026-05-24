@@ -1,0 +1,14 @@
+{
+    "name": "lockwise/app",
+    "description": "Smart lock website",
+    "type": "project",
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "DPro7"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
