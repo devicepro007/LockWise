@@ -55,6 +55,8 @@
                 &copy; <?= date("Y") ?> DPro7.<br>
                 All rights reserved.<br><br>
 
+                Website version: <?= $website_version ?><br><br>
+
                 Software licensed under the
                 <a href="/LICENSE" target="_blank" rel="noopener noreferrer">
                     GNU AGPLv3

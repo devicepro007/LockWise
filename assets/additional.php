@@ -11,6 +11,7 @@ function toID($string)
     $string = trim($string, '-');
     return $string;
 }
+$website_version = "v1.0.1";
 $company_name = "LockWise";
 $url_contact_phone_number = "+14242809537";
 $display_contact_phone_number = "+1 (424) 280-9537";
